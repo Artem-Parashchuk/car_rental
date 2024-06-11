@@ -1,0 +1,19 @@
+.wrapper {
+}
+.header_wrap {
+  background-color: #0b44cd;
+  color: #fff;
+}
+.header {
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+
+}
+.title {
+    display: flex;
+    align-items: center;
+}
+.content {
+}
