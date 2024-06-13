@@ -1,28 +1,35 @@
-import { TagsList } from "../TagsList/TagsList";
+import { ParamsList } from "../ParamsList/ParamsList";
 import { FaRegHeart } from "react-icons/fa";
 import s from "./CarItem.module.css";
-export const CarItem = () => {
+import { Button } from "../Button/Button";
 
+export const CarItem = ({ onOpen, img, make, model, rentalPrice }) => {
   return (
     <li className={s.item}>
       <div className={s.img_block}>
         <img
-          src="https://imageio.forbes.com/specials-images/imageserve/6064b148afc9b47d022718d1/Hennessey-Venom-F5/960x0.jpg?height=473&width=711&fit=bounds"
+          src={img}
           alt=""
         />
         <div className={s.heart}>
-        <FaRegHeart size={18} />
+          <FaRegHeart size={18} />
         </div>
       </div>
       <div className={s.titles_block}>
         <h3>
-          Buick
-          <span className={s.model}> Enclave</span>, 2008
+          {make}
+          <span className={s.model}> {model}</span>, 2008
         </h3>
-        <p className={s.title_price}>$40</p>
+        <p className={s.title_price}>{rentalPrice}</p>
       </div>
-      <TagsList />
-      <button className={s.btn}>Learn more</button>
+      <ParamsList />
+      <div className={s.btn_block}>
+        <Button
+          width={274}
+          text={"Learn more"}
+          handleClick={onOpen}
+        />
+      </div>
     </li>
   );
 };

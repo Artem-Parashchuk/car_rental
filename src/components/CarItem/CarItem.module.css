@@ -2,7 +2,7 @@
   max-width: 274px;
 }
 .img_block {
-    position: relative;
+  position: relative;
   border-radius: 14px;
   background: #f3f3f2,
     linear-gradient(
@@ -12,12 +12,13 @@
     );
   overflow: hidden;
 }
-.heart{
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    color: rgba(255, 255, 255, .8);
+.heart {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  color: rgba(255, 255, 255, 0.8);
 }
+
 .titles_block {
   margin-top: 14px;
   display: flex;
@@ -31,22 +32,7 @@
 }
 .tags_list {
 }
-.btn {
+.btn_block {
   margin-top: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 12px 0;
-  background-color: #3470ff;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 143%;
-  color: #fff;
-  transition:  background-color .3s ease;
-
-  &:hover {
-    background-color:  #0b44cd;
-  }
 }
+
