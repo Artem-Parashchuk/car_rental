@@ -1,14 +1,12 @@
-import { useState } from "react"
-import s from './Catalog.module.css'
-import { CarList } from "../../components/CarList/CarList"
-
+import s from "./Catalog.module.css";
+import { CarList } from "../../components/CarList/CarList";
+import { SearchForm } from "../../components/SearchForm/SearchForm";
 
 export const Catalog = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
   return (
-    <div>
-
-        <CarList />
+    <div className={s.container}>
+      <SearchForm />
+      <CarList />
     </div>
-  )
-}
+  );
+};
