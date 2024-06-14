@@ -4,8 +4,15 @@ import { Layout } from "./components/Layout/Layout";
 import { Home } from "./pages/Home/Home";
 import { Catalog } from "./pages/Catalog/Catalog";
 import { Favorites } from "./pages/Favorites/Favorites";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchCarsThunk } from "./redux/operations";
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchCarsThunk())
+  }, [dispatch])
   return (
     <>
       <Routes>
