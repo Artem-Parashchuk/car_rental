@@ -1,16 +1,37 @@
 import { useEffect } from "react";
 import s from "./ModalWindow.module.css";
 import { IoCloseOutline } from "react-icons/io5";
-import { ParamsList } from "../ParamsList/ParamsList";
-export const ModalWindow = ({ onClose }) => {
+import { moveFirstCharToEnd } from "../../helpers/functions";
+
+export const ModalWindow = ({ onClose, car }) => {
+  const {
+    img,
+    make,
+    model,
+    year,
+    description,
+    rentalConditions,
+    mileage,
+    rentalPrice,
+    address,
+    id,
+    type,
+    fuelConsumption,
+    engineSize,
+    functionalities,
+    accessories,
+  } = car;
+  const { city, country } = getCityAndCountry(address);
+  const rentalConditionsArray = rentalConditions.split("\n");
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         onClose();
       }
     };
-    document.addEventListener("keydown", handleKeyDown);
 
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
@@ -21,6 +42,25 @@ export const ModalWindow = ({ onClose }) => {
       onClose();
     }
   };
+
+  const formatCondition = (condition) => {
+    const parts = condition.split(/(\d+)/);
+    return (
+      <>
+        {parts.map((part, index) =>
+          /\d+/.test(part) ? <span key={index}>{part}</span> : part
+        )}
+      </>
+    );
+  };
+
+  function getCityAndCountry(address) {
+    if (!address) return { city: "Unknown City", country: "Unknown Country" };
+    const parts = address.split(", ");
+    const city = parts[parts.length - 2]?.trim() || "Unknown City";
+    const country = parts[parts.length - 1]?.trim() || "Unknown Country";
+    return { city, country };
+  }
 
   return (
     <div
@@ -36,43 +76,77 @@ export const ModalWindow = ({ onClose }) => {
         </button>
         <div className={s.img_block}>
           <img
-            src="https://imageio.forbes.com/specials-images/imageserve/6064b148afc9b47d022718d1/Hennessey-Venom-F5/960x0.jpg?height=473&width=711&fit=bounds"
-            alt=""
+            src={img}
+            alt={`${make} ${model}`}
           />
         </div>
         <div className={s.title_block}>
           <h2 className={s.title}>
-            Buick <span className={s.model}> Enclave</span>,
-            <span className={s.year}>2008</span>
+            {make} <span className={s.model}>{model}</span>,{" "}
+            <span className={s.year}>{year}</span>
           </h2>
         </div>
         <div className={s.tag_block}>
-          <ParamsList />
+          <ul className={s.list}>
+            <li className={s.item}>{city}</li>
+            <li className={s.item}>{country}</li>
+            <li className={s.item}>Id: {id}</li>
+            <li className={s.item}>Year: {year}</li>
+            <li className={s.item}>Type: {type}</li>
+          </ul>
+          <ul className={s.bottom_list}>
+            <li className={s.item}>Fuel Consumption: {fuelConsumption}</li>
+            <li className={s.item}>Engine Size: {engineSize}</li>
+          </ul>
         </div>
-
-        <p className={s.description_text}>
-          The Buick Enclave is a stylish and spacious SUV known for its
-          comfortable ride and luxurious features.
-        </p>
+        <p className={s.description_text}>{description}</p>
         <div className={s.functional_block}>
           <h3 className={s.functional_title}>
             Accessories and functionalities:
           </h3>
-          <ParamsList />
+          <div className={s.functionality}>
+            <ul className={s.list}>
+              {accessories.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className={s.item}
+                  >
+                    {item}
+                  </li>
+                );
+              })}
+            </ul>
+            <ul className={s.bottom_list}>
+              {functionalities.map((item, index) => {
+                return (
+                  <li
+                    key={index}
+                    className={s.item}
+                  >
+                    {item}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
         <div className={s.rental_block}>
           <h3 className={s.rental_title}>Rental Conditions: </h3>
           <ul className={s.rental_list}>
+            {rentalConditionsArray.map((condition, index) => (
+              <li
+                key={index}
+                className={s.rental_item}
+              >
+                {formatCondition(condition)}
+              </li>
+            ))}
             <li className={s.rental_item}>
-              Minimum age: <span>25</span>
+              Mileage: <span>{mileage}</span>
             </li>
-            <li className={s.rental_item}>Valid driver’s license</li>
-            <li className={s.rental_item}>Security deposite required </li>
             <li className={s.rental_item}>
-              Mileage: <span>5,858</span>
-            </li>
-            <li className={s.rental_item}>
-              Price: <span>40$</span>
+              Price: <span>{moveFirstCharToEnd(rentalPrice)}</span>
             </li>
           </ul>
         </div>
