@@ -1,13 +1,18 @@
 import axios from 'axios'
-import { fetchDataSuccess } from './slice'
+import { fetchDataSuccess, isError, isLoading } from './slice'
 
-axios.defaults.baseURL = 'https:// 66685668f53957909ff798a0.mockapi.io/'
+axios.defaults.baseURL = 'https://66685668f53957909ff798a0.mockapi.io/'
 
-export const fetchCarsThunk = () => async () => {
+export const fetchCarsThunk = () => async (dispatch) => {
     try{
+        dispatch(isLoading(true))
+        dispatch(isError(false))
         const {data} = await axios.get('cars')
-        dispatchEvent(fetchDataSuccess(data))
+        dispatch(fetchDataSuccess(data))
     }catch(error) {
         console.log(error)
+        dispatch(isError(true))
+    }finally{
+        dispatch(isLoading(false))
     }
 }
