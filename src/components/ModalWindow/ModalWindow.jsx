@@ -21,6 +21,7 @@ export const ModalWindow = ({ onClose, car }) => {
     functionalities,
     accessories,
   } = car;
+
   const { city, country } = getCityAndCountry(address);
   const rentalConditionsArray = rentalConditions.split("\n");
 
@@ -53,7 +54,6 @@ export const ModalWindow = ({ onClose, car }) => {
       </>
     );
   };
-
   function getCityAndCountry(address) {
     if (!address) return { city: "Unknown City", country: "Unknown Country" };
     const parts = address.split(", ");
@@ -61,7 +61,6 @@ export const ModalWindow = ({ onClose, car }) => {
     const country = parts[parts.length - 1]?.trim() || "Unknown Country";
     return { city, country };
   }
-
   return (
     <div
       className={s.modal}

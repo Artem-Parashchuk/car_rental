@@ -1,4 +1,3 @@
-import { ParamsList } from "../ParamsList/ParamsList";
 import { FaRegHeart } from "react-icons/fa";
 import s from "./CarItem.module.css";
 import { Button } from "../Button/Button";

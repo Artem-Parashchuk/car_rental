@@ -11,7 +11,7 @@ export const Layout = () => {
           <Navigation />
         </header>
       </div>
-      <main>
+      <main className={s.main}>
         <div className={s.content}>
           <Outlet />
         </div>

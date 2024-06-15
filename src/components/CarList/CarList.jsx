@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchCarsThunk } from "../../redux/operations";
-import { selectIsError, selectIsLoading } from "../../redux/slice";
 import { CarItem } from "../CarItem/CarItem";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
-import { Loader } from "../Loader/Loader";
 import s from "./CarList.module.css";
 
 export const CarList = ({ cars = [] }) => {
   const dispatch = useDispatch();
-  const loading = useSelector(selectIsLoading);
-  const error = useSelector(selectIsError);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedCar, setSelectedCar] = useState(null);

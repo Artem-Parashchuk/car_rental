@@ -1,8 +1,9 @@
-.wrapper {
-}
+
 .header_wrap {
   background-color: #0b44cd;
   color: #fff;
+  z-index: 2;
+  position: relative;
 }
 .header {
   margin: 0 auto;
@@ -14,6 +15,7 @@
 .title {
   display: flex;
   align-items: center;
+  font-size: 22px;
 }
 .content {
 }
