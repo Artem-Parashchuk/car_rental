@@ -7,7 +7,7 @@ export const Layout = () => {
     <div className={s.wrapper}>
       <div className={s.header_wrap}>
         <header className={s.header}>
-          <h2 className={s.title}>Car rental</h2>
+          <h2 className={s.title}>Car Rental</h2>
           <Navigation />
         </header>
       </div>
